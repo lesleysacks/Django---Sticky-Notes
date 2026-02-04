@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="note-form-card card mx-auto" style="max-width: 500px;">
+    <div class="card-body">
+        <h4 class="card-title mb-4">Add a New Sticky Note</h4>
+        <form method="post" action="{% url 'note_create' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" name="title" class="form-control" placeholder="Title" required>
+            </div>
+            <div class="mb-3">
+                <textarea name="content" class="form-control note-content" rows="4" placeholder="Write your note here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary-django">Save Note</button>
+        </form>
+    </div>
+</div>
+
+<h3 class="mt-5 mb-4 text-center">Your Sticky Notes</h3>
+
+{% if notes %}
+    <div class="notes-grid">
+        {% for note in notes %}
+        <div class="sticky-note p-3">
+            <h5 class="note-title">{{ note.title }}</h5>
+            <div class="note-content">{{ note.content|linebreaksbr }}</div>
+            <a href="{% url 'note_delete' note.id %}" class="delete-btn" title="Delete">×</a>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-center text-muted">No notes yet — add one above!</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,109 @@
+/* style.css - Sticky Notes with Bootstrap + Django admin colors */
+
+/* Django-inspired variables */
+:root {
+    --django-primary:    #417690;      /* Classic Django header teal */
+    --django-accent:     #79aec8;      /* Lighter teal for hover/accent */
+    --django-bg:         #f8f9fa;      /* Very light gray */
+    --django-border:     #dee2e6;
+    --django-text:       #212529;
+    --note-yellow:       #fff9c4;      /* Post-it yellow */
+    --note-shadow:       rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--django-bg);
+}
+
+/* Notes grid */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Single sticky note card */
+.sticky-note {
+    background-color: var(--note-yellow);
+    border: 1px solid var(--django-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px var(--note-shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sticky-note:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px var(--note-shadow);
+}
+
+/* Slight fun tilt like real sticky notes */
+.sticky-note:nth-child(odd)  { transform: rotate(1.5deg); }
+.sticky-note:nth-child(even) { transform: rotate(-1.5deg); }
+.sticky-note:hover           { transform: rotate(0deg) translateY(-6px); }
+
+/* Note title */
+.sticky-note .note-title {
+    font-weight: 600;
+    color: var(--django-primary);
+    margin-bottom: 0.75rem;
+}
+
+/* Note content textarea/display */
+.note-content {
+    width: 100%;
+    min-height: 100px;
+    border: none;
+    background: transparent;
+    resize: vertical;
+    font-size: 1rem;
+    color: var(--django-text);
+}
+
+.note-content:focus {
+    outline: none;
+}
+
+/* Delete button - top right */
+.delete-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #dc3545;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.delete-btn:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* Form card */
+.note-form-card {
+    background: white;
+    border: 1px solid var(--django-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+/* Buttons with Django feel */
+.btn-primary-django {
+    background-color: var(--django-primary);
+    border-color: var(--django-primary);
+}
+
+.btn-primary-django:hover {
+    background-color: var(--django-accent);
+    border-color: var(--django-accent);
+}
