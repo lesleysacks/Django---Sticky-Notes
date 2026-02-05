@@ -1,5 +1,5 @@
 # Django---Sticky-Notes
-Application Part 1
+Application Part 1 & 2
 
 ## Setup Instructions
 
