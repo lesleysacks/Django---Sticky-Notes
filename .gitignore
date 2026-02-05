@@ -1,5 +1,11 @@
 venv/
-___pycache/
+__pycache__/
 *.pyc
+*.sqlite3
 db.sqlite3
-.env
+test_output*.txt
+sticky_output*.txt
+*.log
+.DS_Store
+test_output.txt
+

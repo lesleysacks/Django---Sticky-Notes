@@ -1,0 +1,1 @@
+https://github.com/lesleysacks/Django---Sticky-Notes.git
