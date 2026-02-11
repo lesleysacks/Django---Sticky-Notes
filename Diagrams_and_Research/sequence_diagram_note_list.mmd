@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Views as views.py
+    participant DB as models.py\n(DB)
+
+    User->>Browser: Click "View Notes"
+    Browser->>Views: GET /
+    Views->>DB: Note.objects.all()
+    DB-->>Views: [note1, note2, ...]
+    Views-->>Browser: 200 HTML (note_list)
+    Browser-->>User: Render list
+
+    %% Create flow (time increases downward)
+    User->>Browser: Click "Create Note"
+    Browser->>Views: GET /create/
+    Views-->>Browser: 200 HTML (note_form)
+    User->>Browser: Submit form (POST)
+    Browser->>Views: POST /create/ (form data)
+    Views->>DB: Note.save()
+    DB-->>Views: created note (id)
+    Views-->>Browser: Redirect to /
+    Browser-->>User: Shows updated list
+
+    %% Detail + Update + Delete (shortened)
+    User->>Browser: Click note link
+    Browser->>Views: GET /{id}/
+    Views->>DB: Note.objects.get(id)
+    DB-->>Views: note
+    Views-->>Browser: 200 HTML (note_detail)
+
+    User->>Browser: Click "Delete"
+    Browser->>Views: POST /delete/{id}/
+    Views->>DB: note.delete()
+    DB-->>Views: deleted
+    Views-->>Browser: Redirect to /

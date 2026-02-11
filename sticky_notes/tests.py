@@ -5,11 +5,13 @@ from .models import Note
 
 class NoteTests(TestCase):
     def test_example(self):
+        ''' This only to test'''
         self.assertEqual(1, 1)
 
 class NoteViewTests(TestCase):
 
     def setUp(self):
+        '''A sample to test get the title and content'''
         self.note = Note.objects.create(
             title="Sample Note",
             content="Sample Content"

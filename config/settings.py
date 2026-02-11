@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'sticky_notes',  # App
+    'sticky_notes',  # App that was installed
 ]
 
 MIDDLEWARE = [
@@ -108,6 +108,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'sticky_notes' / 'static'
 ]
+
+# Directory where `collectstatic` will copy static files for production
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type

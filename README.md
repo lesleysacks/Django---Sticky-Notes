@@ -4,11 +4,33 @@ Application Part 1 & 2
 ## Setup Instructions
 
 python -m venv venv
-source venv/bin/activate #Windows: venv\Scripts\activate
-pip install -r requirements
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+
+## Static files
+
+To collect static assets for production run:
+
+```bash
+python manage.py collectstatic --noinput
+```
+
+Ensure `STATIC_ROOT` is set in `config/settings.py` (added in this repository).
+
+## Linting & Formatting
+
+Install and run the following to check style and format code:
+
+```bash
+pip install black flake8
+flake8 . --exclude=.venv
+black . --exclude=.venv
+```
 
 ## Diagrams (Use Case + Sequence)
 
